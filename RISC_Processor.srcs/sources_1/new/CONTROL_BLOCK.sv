@@ -42,7 +42,7 @@ module CONTROL_BLOCK(
         case(opcode)
             4'b000: begin
                 ralu_w_en = 0;
-                pc_en = 0;
+//                pc_en = 0;
             end
             4'b1011: begin
                 do_jump = 1;

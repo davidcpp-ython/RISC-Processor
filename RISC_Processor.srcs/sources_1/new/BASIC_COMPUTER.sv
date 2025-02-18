@@ -36,8 +36,9 @@ module BASIC_COMPUTER(
     logic [15:0] data_mem [0:65_535];
     logic [15:0] data_mem_data_write;
     
-    always_comb begin
-        instr = instr_mem[addr_read];
+    
+    always_ff @(posedge clk) begin
+        instr <= instr_mem[instr_mem_addr_read];
     end
     
     assign data_mem_data_read = data_mem[data_mem_addr_read];
@@ -46,6 +47,7 @@ module BASIC_COMPUTER(
         if(data_mem_w_en == 1)
             data_mem[data_mem_addr_write] <= data_mem_data_write;
     end
+    
     
     PROCESSOR cpu (
         .clk(clk),
